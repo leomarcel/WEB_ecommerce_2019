@@ -1,0 +1,998 @@
+{
+	"info": {
+		"_postman_id": "fe8b5059-6627-4855-adb3-94d85f77874b",
+		"name": "Ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/connect?password=Password1",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"connect"
+							],
+							"query": [
+								{
+									"key": "password",
+									"value": "Password1",
+									"description": "Password of the user"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh user API Key",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/refresh?refreshToken={{api_refresh_token}}",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"refresh"
+							],
+							"query": [
+								{
+									"key": "refreshToken",
+									"value": "{{api_refresh_token}}"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get user info",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/info",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"info"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change user info",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/update?name=User&password=Password1&darkm=false",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"update"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "User",
+									"description": "Change the name (optional)"
+								},
+								{
+									"key": "password",
+									"value": "Password1",
+									"description": "Change the password (optional)"
+								},
+								{
+									"key": "darkm",
+									"value": "false",
+									"description": "Change the dark mode access (optional)"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@epitech.eu",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create account",
+					"protocolProfileBehavior": {
+						"followAuthorizationHeader": false
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "4325d5c6bd20bd7fd3adf6e9c1bb475455bcb672",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/sign-up?email=user@example.com&password=Password1&name=User&darkm=false",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"sign-up"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user@example.com",
+									"description": "Email / Username of the new account (Need to be unique)"
+								},
+								{
+									"key": "password",
+									"value": "Password1",
+									"description": "Password of the new account"
+								},
+								{
+									"key": "name",
+									"value": "User",
+									"description": "Name of the new account (optional)"
+								},
+								{
+									"key": "darkm",
+									"value": "false",
+									"description": "Allow user access to the dark mode (optional, default set to false)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Sale Item",
+			"item": [
+				{
+					"name": "Sale Item Paginator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/sale?page=1&nbByPage=50",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"sale"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "nbByPage",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One Sale Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/sale/:id/info",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"sale",
+								":id",
+								"info"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "69",
+									"description": "Id of the sale item"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sale Item",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/create-sale-item?title=Croissant&price=10&description=Ils sont délicieux&image={{url}}image/default.jpg",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"create-sale-item"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Croissant"
+								},
+								{
+									"key": "price",
+									"value": "10"
+								},
+								{
+									"key": "description",
+									"value": "Ils sont délicieux"
+								},
+								{
+									"key": "image",
+									"value": "{{url}}image/default.jpg"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Sale Item info",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/sale/:id/update?price=10&description=Encore meilleur !&image={{url}}image/default.jpg",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"sale",
+								":id",
+								"update"
+							],
+							"query": [
+								{
+									"key": "price",
+									"value": "10",
+									"description": "Change the price (optional)"
+								},
+								{
+									"key": "description",
+									"value": "Encore meilleur !",
+									"description": "Change the description (optional)"
+								},
+								{
+									"key": "image",
+									"value": "{{url}}image/default.jpg",
+									"description": "Change the image (optional)"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								},
+								{
+									"key": "id",
+									"value": "42",
+									"description": "Id of the sale item"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Shopping Cart",
+			"item": [
+				{
+					"name": "Get the shopping cart",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/cart",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"cart"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the shopping cart",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/cart?data=[{\"id\": 69, \"count\": 2}, {\"id\": 42, \"count\": 6}]",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"cart"
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "[{\"id\": 69, \"count\": 2}, {\"id\": 42, \"count\": 6}]",
+									"description": "Cart data"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to the shopping cart",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/cart/add?data=[{\"id\": 69, \"count\": 2}, {\"id\": 42, \"count\": 6}]",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"cart",
+								"add"
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "[{\"id\": 69, \"count\": 2}, {\"id\": 42, \"count\": 6}]",
+									"description": "Cart data"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove in the shopping cart",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/cart/remove?data=[{\"id\": 69, \"count\": 2}, {\"id\": 42, \"count\": 6}]",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"cart",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "[{\"id\": 69, \"count\": 2}, {\"id\": 42, \"count\": 6}]",
+									"description": "Cart data"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Payement",
+			"item": [
+				{
+					"name": "Get payement link",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/cart/payement",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"cart",
+								"payement"
+							],
+							"variable": [
+								{
+									"description": "Email of the user",
+									"key": "username",
+									"value": "user@example.com"
+								}
+							]
+						},
+						"description": "It's bullshit"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dive into the D@rk API",
+			"item": [
+				{
+					"name": "Get the D@rk sale item Paginator",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}dark-api/:username/sale",
+							"host": [
+								"{{url}}dark-api"
+							],
+							"path": [
+								":username",
+								"sale"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Sale Item in the D@rk API",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}dark-api/:username/sale/:id/info",
+							"host": [
+								"{{url}}dark-api"
+							],
+							"path": [
+								":username",
+								"sale",
+								":id",
+								"info"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								},
+								{
+									"key": "id",
+									"value": "6969",
+									"description": "Id of the d@rk sale item"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create D@rk sale item",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/create-sale-item?title=Croissant&price=10&description=Ils sont délicieux&image={{url}}image/default.jpg",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"create-sale-item"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Croissant"
+								},
+								{
+									"key": "price",
+									"value": "10"
+								},
+								{
+									"key": "description",
+									"value": "Ils sont délicieux"
+								},
+								{
+									"key": "image",
+									"value": "{{url}}image/default.jpg"
+								}
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "user@example.com",
+									"description": "Email of the user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change D@rk Sale Item info",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{api_token}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/:username/sale/:id/update?price=10&description=Encore meilleur !&image={{url}}image/default.jpg",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								":username",
+								"sale",
+								":id",
+								"update"
+							],
+							"query": [
+								{
+									"key": "price",
+									"value": "10",
+									"description": "Change the price (optional)"
+								},
+								{
+									"key": "description",
+									"value": "Encore meilleur !",
+									"description": "Change the description (optional)"
+								},
+								{
+									"key": "image",
+									"value": "{{url}}image/default.jpg",
+									"description": "Change the image (optional)"
+								}
+							],
+							"variable": [
+								{
+									"description": "Email of the user",
+									"key": "username",
+									"value": "user@example.com"
+								},
+								{
+									"description": "Id of the sale item",
+									"key": "id",
+									"value": "42"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "71436375-bd88-498c-ae5e-f0ec9da29277",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f48b8ede-55f9-4d77-8dc8-504cc5ed7a41",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "44a045aa-a371-4f85-a3fe-ff27e78c32c2",
+			"key": "url",
+			"value": "http://127.0.0.1:8000/",
+			"type": "string"
+		},
+		{
+			"id": "cb9669ac-7ae1-4e5e-bb79-67897c924267",
+			"key": "api_token",
+			"value": "abcdef123456",
+			"type": "string"
+		},
+		{
+			"id": "5f405f8f-0b78-4b52-a239-906bdf8b3907",
+			"key": "api_refresh_token",
+			"value": "a1b2c3d4",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
